@@ -78,14 +78,8 @@
 				8278252427315FEA00E08B26 /* ViewModel */,
 				82782521273154B400E08B26 /* Resource */,
 				8278251E2731045200E08B26 /* Models */,
-				826142FA272ECB6000C0970F /* AppDelegate.swift */,
-				827ECF3B2730287000FF70DF /* LocalDataManager.swift */,
-				826142FC272ECB6000C0970F /* SceneDelegate.swift */,
-				82614310272ED4E800C0970F /* SettingsViewController.swift */,
-				8261430E272ECBAD00C0970F /* TabBarViewController.swift */,
-				82614300272ECB6000C0970F /* Main.storyboard */,
-				82614303272ECB6100C0970F /* Assets.xcassets */,
-				82614305272ECB6100C0970F /* LaunchScreen.storyboard */,
+				8278252A273172CE00E08B26 /* controller */,
+				8278252B273172D800E08B26 /* Views */,
 				82614308272ECB6100C0970F /* Info.plist */,
 			);
 			path = landingPage;
@@ -102,6 +96,10 @@
 		82782521273154B400E08B26 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				82614303272ECB6100C0970F /* Assets.xcassets */,
+				826142FA272ECB6000C0970F /* AppDelegate.swift */,
+				826142FC272ECB6000C0970F /* SceneDelegate.swift */,
+				827ECF3B2730287000FF70DF /* LocalDataManager.swift */,
 				82782522273154DC00E08B26 /* Landing.swift */,
 			);
 			path = Resource;
@@ -114,6 +112,24 @@
 				827825282731601E00E08B26 /* SettingsViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8278252A273172CE00E08B26 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				82614310272ED4E800C0970F /* SettingsViewController.swift */,
+				8261430E272ECBAD00C0970F /* TabBarViewController.swift */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		8278252B273172D800E08B26 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				82614305272ECB6100C0970F /* LaunchScreen.storyboard */,
+				82614300272ECB6000C0970F /* Main.storyboard */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		AC036B7AC300B7AED7BDC19A /* Frameworks */ = {
