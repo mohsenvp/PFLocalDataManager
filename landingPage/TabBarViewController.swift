@@ -69,19 +69,6 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
                 print(error)
             }
         }
-        
-        
-        
-
-        
-        
-        
-        
-        LocalDataManager.getAllData(className: Landing.userLocalDBName, email: Landing.userEmail) { objects in
-            print(objects)
-        } failure: { error in
-            print(error)
-        }
     }
     
 }
