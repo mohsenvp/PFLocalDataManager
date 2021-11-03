@@ -54,7 +54,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     fileprivate func handleUserPreferences() {
 
-        LocalDataManager.getFirstObject(className: Landing.userLocalDBName, email: Landing.userEmail) {object in
+        LocalDataManager.getFirstObjectInLocalDataStore(className: Landing.userLocalDBName, email: Landing.userEmail) {object in
             print(object)
             _ = object.object(forKey: "language")! as! String
             let landingPage : String = object.object(forKey: "landingPage")! as! String
@@ -86,7 +86,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             userPreferences.language = Language.English.rawValue
             userPreferences.landingPage = LandingPage.Home.rawValue
     
-            LocalDataManager.savingObjectInLocal(className: Landing.userLocalDBName, parameters: userPreferences) { object in
+            LocalDataManager.savingUserPreferencesInLocalDataStore(className: Landing.userLocalDBName, parameters: userPreferences) { object in
                 print(object)
             } failure: { error in
                 print(error)

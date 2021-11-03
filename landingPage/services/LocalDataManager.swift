@@ -17,7 +17,7 @@ struct LocalDataManager{
     ///   - email
     ///   - success: retun object
     ///   - failure: return error
-    static func getFirstObject(className : String! , email: String!, success:@escaping (_ object : PFObject) -> Void, failure: @escaping (_ error: Error) -> Void) {
+    static func getFirstObjectInLocalDataStore(className : String! , email: String!, success:@escaping (_ object : PFObject) -> Void, failure: @escaping (_ error: Error) -> Void) {
         
         let query = PFQuery(className: className)
         query.whereKey("email", equalTo: email.lowercased())
@@ -37,7 +37,7 @@ struct LocalDataManager{
     ///   - className: database name
     ///   - success: return array of objects
     ///   - failure: return NSError
-    static func getAllData(className:String!, success:@escaping (_ objects : [PFObject]) -> Void, failure: @escaping (_ error: Error) -> Void){
+    static func getAllDataInLocalDataStore(className:String!, success:@escaping (_ objects : [PFObject]) -> Void, failure: @escaping (_ error: Error) -> Void){
         
         let query = PFQuery(className: className)
 //        query.whereKey("email", equalTo: email.lowercased())
@@ -59,7 +59,7 @@ struct LocalDataManager{
     ///   - parameters: parameters that we need insert to db (email is unique key)
     ///   - success: return success
     ///   - failure: return error
-    static func savingObjectInLocal(className : String, parameters : PFObjectModel? , success:@escaping (_ object : Bool) -> Void, failure: @escaping (_ error: Error) -> Void){
+    static func savingUserPreferencesInLocalDataStore(className : String, parameters : PFObjectModel? , success:@escaping (_ object : Bool) -> Void, failure: @escaping (_ error: Error) -> Void){
 
         let userPreferences = PFObject(className:className)
         userPreferences["email"] = parameters?.email!.lowercased()
@@ -81,7 +81,7 @@ struct LocalDataManager{
     ///   - parameters: landing/language optional update
     ///   - success: return success
     ///   - failure: return failed
-    static func updateObjectInLocal(className : String, parameters : PFObjectModel? , success:@escaping (_ succes : Bool) -> Void, failure: @escaping (_ error: Error) -> Void){
+    static func updateUserPreferencesInLocalDataStore(className : String, parameters : PFObjectModel? , success:@escaping (_ succes : Bool) -> Void, failure: @escaping (_ error: Error) -> Void){
         
         let query = PFQuery(className : className )
         query.fromLocalDatastore()
@@ -104,93 +104,5 @@ struct LocalDataManager{
                 failure(error!)
             }
         }
-        
-        
-        
-        
-//        query.getFirstObjectInBackground { object, error in
-//            if object != nil{
-//                if let landing = parameters?.landingPage {
-//                    object!["landingPage"] = landing
-//                }
-//                if let language = parameters?.language{
-//                    object!["language"] = language
-//                }
-//                object!.pinInBackground()
-//                success(true)
-//            }else{
-//                failure(error!)
-//            }
-//        }
     }
-    
-    
-    
-    
-    
-    
-//    PFObject.deleteAll(inBackground: objectArray) { (succeeded, error) in
-//        if (succeeded) {
-//            // The array of objects was successfully deleted.
-//        } else {
-//            // There was an error. Check the errors localizedDescription.
-//        }
-//    }
-
-//    gameScore.unpinInBackground()
-//
-//    PFObject.unpinAllInBackground(listOfObjects)
-   
-//    deleteInBackgroundWithBlock
-    
-
-//
-//    func updateObjectInCloud(className : String, email : String){
-//        let query = PFQuery(className : className )
-//        query.getObjectInBackground(withId: email) { (object: PFObject?, error: Error?) in
-//            if let error = error {
-//                print(error.localizedDescription)
-//            } else if let object = object {
-//                object["cheatMode"] = true
-//                object["score"] = 1338
-//                object.saveInBackground()
-//            }
-//        }
-//    }
-   
-//    func savingObjectInCloud(className : String){
-//        let userPreferences = PFObject(className: className)
-//        userPreferences["userId"] = UIDevice.current.identifierForVendor?.uuidString ?? ""
-//        userPreferences["language"] = "English"
-//        userPreferences["landingPage"] = "News"//"Home"
-//
-//        userPreferences.saveInBackground { (succeeded, error)  in
-//            if (succeeded) {
-//                // The object has been saved.
-//            } else {
-//                // There was a problem, check error.description
-//            }
-//        }
-//    }
-//
-    
-
-//    static func getFirstObjectInCloud(className: String){
-//        let query = PFQuery(className: className)
-//        query.getFirstObjectInBackground { object, error in
-//            if object != nil{
-//
-////                let landingPage = object!.object(forKey: "landingPage")! as? String
-////                if landingPage == "Home"{
-////                    self.selectedIndex = 0
-////                }else{
-////                    self.selectedIndex = 1
-////                }
-//            }else{
-//
-//            }
-//        }
-//    }
-//
-
 }

@@ -20,7 +20,7 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
 
         
-        LocalDataManager.getFirstObject(className: Landing.userLocalDBName, email: Landing.userEmail) { object in
+        LocalDataManager.getFirstObjectInLocalDataStore(className: Landing.userLocalDBName, email: Landing.userEmail) { object in
             print(object)
             let language = object.object(forKey: "language")
             self.textLabel.text = "Currently your preferd language is \(language!)"
@@ -34,9 +34,9 @@ class SettingsViewController: UIViewController {
     }
     
     fileprivate func callLocalManager(_ userPreferences: PFObjectModel) {
-        LocalDataManager.getFirstObject(className: Landing.userLocalDBName, email: Landing.userEmail) { object in
+        LocalDataManager.getFirstObjectInLocalDataStore(className: Landing.userLocalDBName, email: Landing.userEmail) { object in
             
-            LocalDataManager.updateObjectInLocal(className: Landing.userLocalDBName, parameters: userPreferences) { succes in
+            LocalDataManager.updateUserPreferencesInLocalDataStore(className: Landing.userLocalDBName, parameters: userPreferences) { succes in
                 let alert = UIAlertController(title: "Success", message: "Your language changed to \(userPreferences.language != nil ? userPreferences.language! : userPreferences.landingPage! )", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK!", style: .cancel, handler: { (_) in
                 }))
@@ -50,7 +50,7 @@ class SettingsViewController: UIViewController {
             }
             
         } failure: { error in
-            LocalDataManager.savingObjectInLocal(className: Landing.userLocalDBName, parameters: userPreferences) { object in
+            LocalDataManager.savingUserPreferencesInLocalDataStore(className: Landing.userLocalDBName, parameters: userPreferences) { object in
                 
             } failure: { error in
                 
@@ -60,7 +60,7 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func getAllLocalDBButton(_ sender: Any) {
-        LocalDataManager.getAllData(className: Landing.userLocalDBName) { objects in
+        LocalDataManager.getAllDataInLocalDataStore(className: Landing.userLocalDBName) { objects in
             for item in objects{
                 print(item)
             }
