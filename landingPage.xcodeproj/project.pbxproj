@@ -54,6 +54,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8213E96D2732559400E6C592 /* services */ = {
+			isa = PBXGroup;
+			children = (
+				82782522273154DC00E08B26 /* Landing.swift */,
+				827ECF3B2730287000FF70DF /* LocalDataManager.swift */,
+			);
+			path = services;
+			sourceTree = "<group>";
+		};
 		826142EE272ECB6000C0970F = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +84,7 @@
 		826142F9272ECB6000C0970F /* landingPage */ = {
 			isa = PBXGroup;
 			children = (
+				8213E96D2732559400E6C592 /* services */,
 				8278252427315FEA00E08B26 /* ViewModel */,
 				82782521273154B400E08B26 /* Resource */,
 				8278251E2731045200E08B26 /* Models */,
@@ -99,8 +109,6 @@
 				82614303272ECB6100C0970F /* Assets.xcassets */,
 				826142FA272ECB6000C0970F /* AppDelegate.swift */,
 				826142FC272ECB6000C0970F /* SceneDelegate.swift */,
-				827ECF3B2730287000FF70DF /* LocalDataManager.swift */,
-				82782522273154DC00E08B26 /* Landing.swift */,
 			);
 			path = Resource;
 			sourceTree = "<group>";

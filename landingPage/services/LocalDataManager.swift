@@ -11,6 +11,12 @@ import Parse
 
 struct LocalDataManager{
     
+    /// Get first object of local db by email address
+    /// - Parameters:
+    ///   - className database name
+    ///   - email
+    ///   - success: retun object
+    ///   - failure: return error
     static func getFirstObject(className : String! , email: String!, success:@escaping (_ object : PFObject) -> Void, failure: @escaping (_ error: Error) -> Void) {
         
         let query = PFQuery(className: className)
@@ -25,7 +31,13 @@ struct LocalDataManager{
         }
     }
     
-    static func getAllData(className:String! , email:String!, success:@escaping (_ objects : [PFObject]) -> Void, failure: @escaping (_ error: Error) -> Void){
+    
+    /// get all data exist in local db
+    /// - Parameters:
+    ///   - className: database name
+    ///   - success: return array of objects
+    ///   - failure: return NSError
+    static func getAllData(className:String!, success:@escaping (_ objects : [PFObject]) -> Void, failure: @escaping (_ error: Error) -> Void){
         
         let query = PFQuery(className: className)
 //        query.whereKey("email", equalTo: email.lowercased())
@@ -40,6 +52,13 @@ struct LocalDataManager{
         }
     }
     
+    
+    /// save an object in local database
+    /// - Parameters:
+    ///   - className: database name
+    ///   - parameters: parameters that we need insert to db (email is unique key)
+    ///   - success: return success
+    ///   - failure: return error
     static func savingObjectInLocal(className : String, parameters : PFObjectModel? , success:@escaping (_ object : Bool) -> Void, failure: @escaping (_ error: Error) -> Void){
 
         let userPreferences = PFObject(className:className)
@@ -55,6 +74,13 @@ struct LocalDataManager{
         }
     }
     
+    
+    /// update an object in local database by email field
+    /// - Parameters:
+    ///   - className: database name
+    ///   - parameters: landing/language optional update
+    ///   - success: return success
+    ///   - failure: return failed
     static func updateObjectInLocal(className : String, parameters : PFObjectModel? , success:@escaping (_ succes : Bool) -> Void, failure: @escaping (_ error: Error) -> Void){
         
         let query = PFQuery(className : className )
@@ -74,11 +100,14 @@ struct LocalDataManager{
                         success(true)
                     }
                 }
-//
             }else{
                 failure(error!)
             }
         }
+        
+        
+        
+        
 //        query.getFirstObjectInBackground { object, error in
 //            if object != nil{
 //                if let landing = parameters?.landingPage {

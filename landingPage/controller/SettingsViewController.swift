@@ -60,7 +60,7 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func getAllLocalDBButton(_ sender: Any) {
-        LocalDataManager.getAllData(className: Landing.userLocalDBName, email: Landing.userEmail) { objects in
+        LocalDataManager.getAllData(className: Landing.userLocalDBName) { objects in
             for item in objects{
                 print(item)
             }

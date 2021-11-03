@@ -16,6 +16,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+        
+        
+        handleUserPreferences()
+
+        
         guard let _ = (scene as? UIWindowScene) else { return }
     }
 
@@ -45,6 +50,48 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+    }
+    
+    fileprivate func handleUserPreferences() {
+
+        LocalDataManager.getFirstObject(className: Landing.userLocalDBName, email: Landing.userEmail) {object in
+            print(object)
+            _ = object.object(forKey: "language")! as! String
+            let landingPage : String = object.object(forKey: "landingPage")! as! String
+            print(landingPage)
+            
+            let board = UIStoryboard(name: "Main", bundle: nil)
+                      let TabBarViewController = board.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
+            self.window?.rootViewController = TabBarViewController
+//            if landingPage == LandingPage.Home.rawValue{
+//                self.selectedIndex = 0
+//            }
+            switch landingPage{
+            case "Home":
+                TabBarViewController.selectedIndex = 0
+                break
+            case "News":
+                TabBarViewController.selectedIndex = 1
+                break
+            case "Settings":
+                TabBarViewController.selectedIndex = 2
+                break
+            default:
+                TabBarViewController.selectedIndex = 2
+            }
+        } failure: { error in
+            print(error.localizedDescription)
+            var userPreferences = PFObjectModel()
+            userPreferences.email = Landing.userEmail
+            userPreferences.language = Language.English.rawValue
+            userPreferences.landingPage = LandingPage.Home.rawValue
+    
+            LocalDataManager.savingObjectInLocal(className: Landing.userLocalDBName, parameters: userPreferences) { object in
+                print(object)
+            } failure: { error in
+                print(error)
+            }
+        }
     }
 
 
